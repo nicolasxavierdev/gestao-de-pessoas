@@ -38,7 +38,7 @@ export default class Form extends Component {
                 <input type='text' name='cpf' value={this.state.form.cpf} onChange={this.dadosForm} />
                 
                 Data de Nascimento:
-                <input type='date' name='date' onChange={this.dadosForm} />
+                <input type='date' name='dateOfBirth' onChange={this.dadosForm} />
                 
                 <div>
                     <h3> {this.state.form.nome} </h3>
