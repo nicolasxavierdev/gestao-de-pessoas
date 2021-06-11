@@ -27,16 +27,21 @@ export default class Form extends Component {
         return (
             <div>
                 <h1>Formulário</h1>
+
                 Nome:
                 <input type='text' name='nome' value={this.state.form.nome} onChange={this.dadosForm} />
+                
                 E-mail:
                 <input type='email' name='email' value={this.state.form.email} onChange={this.dadosForm} />
+                
                 CPF:
                 <input type='text' name='cpf' value={this.state.form.cpf} onChange={this.dadosForm} />
+                
                 Data de Nascimento:
-                <input type='date' name='date'  onChange={this.dadosForm} />
+                <input type='date' name='date' onChange={this.dadosForm} />
+                
                 <div>
-                    <h3> {this.state.form.name} </h3>
+                    <h3> {this.state.form.nome} </h3>
                     <h3> {this.state.form.email} </h3>
                     <h3> {this.state.form.cpf} </h3>
                     <h3> {this.state.form.dateOfBirth} </h3>
