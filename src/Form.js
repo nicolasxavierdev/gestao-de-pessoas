@@ -1,77 +1,68 @@
 import React, { Component } from 'react'
 
-class Form extends Component {
+export default class Form extends Component {
 
-    state = {
-        name: '',
-        email: '',
-        cpf: '',
-        dateOfBirth: ''
+    constructor(props) {
+        super(props)
+        this.state = {
+            form: {
+                nome: '',
+                email: '',
+                cpf: '',
+                dataDeNascimento: '',
+                error: ''
+            }
+        }
+
+        this.dadosForm = this.dadosForm.bind(this)
+        this.cadastrar = this.cadastrar.bind(this)
+
     }
 
-    handleSubmit = (e) => {
+    dadosForm(e) {
+        let form = this.state.form
+        form[e.target.name] = e.target.value
+        this.setState({form: form})
+    }
+
+    cadastrar(e) {
+        const { nome, email, cpf, dataDeNascimento } = this.state
+
+        if (nome !== '' && email !== '' && cpf !== '' && dataDeNascimento !== '') {
+            alert(`Nome: ${nome} \nE-mail: ${email} \nCPF: ${cpf} \nData de Nascimento: ${dataDeNascimento}`)
+        } else {
+            this.setState({ error: 'Ops, Parece que está faltando algo!' })
+        }
+
         e.preventDefault()
-
-        let { name } = this.state
-        name = this.setState.name
-
-        let { email } = this.state
-        email = email
-
-        let { cpf } = this.state
-        cpf = cpf
-
-        let { dateOfBirth } = this.state
-        dateOfBirth = dateOfBirth
-
-        console.log(name ,email ,cpf ,dateOfBirth)
-    }
-
-    handleInputChange = (e) => {
-        this.setState({ name: e.target.value })
-    }
-
-    handleInputChange = (e) => {
-        this.setState({ email: e.target.value })
-    }
-
-    handleInputChange = (e) => {
-        this.setState({ cpf: e.target.value })
-    }
-
-    handleInputChange = (e) => {
-        this.setState({ dateOfBirth: e.target.value })
     }
 
     render() {
-
-        const { name } = this.state
         return (
-            <section>
-                <form onSubmit = {this.handleSubmit}>
-                    <label>
-                        Nome:
-                            <input onChange = {this.handleInputChange} type = 'text' />
-                    </label>
-                    <label>
-                        E-mail:
-                            <input onChange = {this.handleInputChange} type = 'email' />
-                    </label>
-                    <label>
-                        CPF:
-                            <input onChange = {this.handleInputChange} type = 'text' />
-                    </label>
-                    <label>
-                        Data de Nascimento:
-                            <input onChange = {this.handleInputChange} type = 'date' />
-                    </label>
-                    <button type = 'submit'> Enviar </button>
+            <div>
+                <h1>Formulário.</h1>
+
+                {this.state.error && <p>{this.state.error}</p>}
+                
+                <form onSubmit={this.cadastrar}>
+                    
+                    <label>Nome:</label>
+                    <input type='text' value={this.state.form.nome} onChange={this.dadosForm} />
+                    
+                    <label>E-mail:</label>
+                    <input type='email' value={this.state.form.email} onChange={this.dadosForm} />
+                    
+                    <label>CPF:</label>
+                    <input type='text' value={this.state.form.cpf} onChange={this.dadosForm} />
+                    
+                    <label>Data de Nascimento:</label>
+                    <input type='date' value={this.state.form.dataDeNascimento} onChange={this.dadosForm} />
+                    
+                    <button type='submit'>Enviar</button>
                 </form>
-                <h3> {name} </h3>
-            </section>
+            </div>
         )
     }
 }
 
 
-export default Form
